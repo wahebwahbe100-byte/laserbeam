@@ -35,19 +35,14 @@
     .about-laser-glow{position:absolute;z-index:2;left:8%;top:9%;width:270px;height:270px;border-radius:50%;background:radial-gradient(circle,rgba(255,102,50,.26),rgba(237,28,36,.1) 34%,transparent 69%);filter:blur(6px);pointer-events:none}
     .about-kicker{position:absolute;z-index:3;top:24px;left:24px;display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:999px;background:rgba(5,7,9,.72);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(12px);font-size:.73rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#fff}
     .about-kicker:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--brand2);box-shadow:0 0 16px var(--brand2)}
-    .about-before-after{--compare-position:50%;position:absolute;z-index:4;left:28px;bottom:28px;width:min(70%,470px);height:245px;overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,.38);background:#090b0d;box-shadow:0 18px 45px rgba(0,0,0,.52);cursor:ew-resize;touch-action:none;user-select:none}
-    .about-before-after .compare-half{position:absolute;inset:0;overflow:hidden}
-    .about-before-after .compare-half.after{clip-path:inset(0 0 0 var(--compare-position))}
-    .about-before-after img{width:100%;height:100%;object-fit:cover;pointer-events:none}
+    .about-before-after{position:absolute;z-index:4;left:28px;bottom:28px;width:min(70%,470px);height:245px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,.38);background:#090b0d;box-shadow:0 18px 45px rgba(0,0,0,.52)}
+    .about-before-after .compare-half{position:relative;overflow:hidden}
+    .about-before-after .compare-half+ .compare-half{border-left:1px solid rgba(255,255,255,.32)}
+    .about-before-after img{width:100%;height:100%;object-fit:cover}
     .about-before-after .before img{filter:grayscale(.45) sepia(.35) brightness(.53) contrast(1.2)}
     .about-before-after .after img{filter:grayscale(.18) brightness(1.06) contrast(1.02)}
-    .about-before-after .compare-label{position:absolute;bottom:0;padding:22px 14px 12px;font-size:.72rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.9));pointer-events:none}
-    .about-before-after .before .compare-label{left:0;text-align:left}
-    .about-before-after .after .compare-label{right:0;text-align:right}
-    .about-before-after .compare-divider{position:absolute;z-index:5;left:var(--compare-position);top:0;bottom:0;width:2px;transform:translateX(-50%);background:#fff;box-shadow:0 0 14px rgba(0,0,0,.7);pointer-events:none}
-    .about-before-after .compare-handle{position:absolute;z-index:6;left:var(--compare-position);top:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:#07090b;border:2px solid #fff;box-shadow:0 8px 22px rgba(0,0,0,.5);font-weight:900;color:#fff;pointer-events:none;transition:transform .15s ease}
-    .about-before-after:hover .compare-handle,.about-before-after.is-dragging .compare-handle{transform:translate(-50%,-50%) scale(1.08)}
-    .about-before-after:focus-visible{outline:3px solid var(--brand2);outline-offset:4px}
+    .about-before-after .compare-label{position:absolute;left:0;right:0;bottom:0;padding:22px 10px 12px;text-align:center;font-size:.72rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.9))}
+    .about-before-after .compare-handle{position:absolute;z-index:5;left:50%;top:50%;transform:translate(-50%,-50%);width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#07090b;border:1px solid rgba(255,255,255,.3);box-shadow:0 8px 22px rgba(0,0,0,.5);font-weight:900;color:#fff}
     .about-copy{padding:12px 0}
     .about-copy .about-brand{display:inline-block;margin-bottom:16px;color:#ff5a4d;font-size:.8rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
     .about-copy h2{max-width:690px;margin-bottom:22px;font-size:clamp(2.25rem,4vw,4.15rem);line-height:.98;letter-spacing:-.045em}
@@ -122,19 +117,19 @@
 </section>
 <div class="strip"><div class="container strip-grid"><div class="stat"><strong>Materialschonend</strong><small>Kontrollierte Bearbeitung der Oberfläche</small></div><div class="stat"><strong>Ohne Strahlmittel</strong><small>Weniger Rückstände und Nacharbeit</small></div><div class="stat"><strong>Direkt vor Ort</strong><small>Kein unnötiger Transport großer Bauteile</small></div><div class="stat"><strong>Flexibel einsetzbar</strong><small>Industrie, KFZ und Bauwerke</small></div></div></div>
 <section id="leistungen"><div class="container"><div class="section-head"><div><span class="eyebrow">Unsere Leistungen</span><h2>Laserreinigung für anspruchsvolle Oberflächen</h2></div><p>Vom filigranen Fahrzeugteil bis zur großflächigen Industrieanlage: Wir wählen Leistung, Pulsdauer und Arbeitsweise passend zu Material und Verschmutzung.</p></div><div class="grid-3">
-<article class="card service-card"><img src="assets/metal.jpg" alt="Laserentfernung von Rost an einem Metallbauteil" loading="lazy"><div class="content"><h3>Metall & Industrie</h3><p>Reinigung und Vorbereitung von Metalloberflächen vor Schweißen, Beschichten oder Weiterverarbeitung.</p><ul><li>Rost- und Oxidentfernung</li><li>Schweißnahtreinigung</li><li>Entlackung & Entschichtung</li></ul></div></article>
-<article class="card service-card"><img src="assets/auto.webp" alt="Laserreinigung eines Fahrzeugteils" loading="lazy"><div class="content"><h3>KFZ, Young- & Oldtimer</h3><p>Substanzerhaltende Sanierung von Fahrzeugteilen und Unterböden mit hoher Kontrolle.</p><ul><li>Unterboden & Achsteile</li><li>Lack-, Rost- und Schutzschichten</li><li>Vorbereitung für Schutzaufbau</li></ul></div></article>
-<article class="card service-card"><img src="assets/building.jpg" alt="Vorher-Nachher Reinigung verschiedener Steinoberflächen" loading="lazy"><div class="content"><h3>Fassaden & Bauwerke</h3><p>Gezielte Reinigung belasteter Flächen, Steine und Bauteile mit minimalem Materialabtrag.</p><ul><li>Graffiti & Ruß</li><li>Moos und Ablagerungen</li><li>Historische und sensible Flächen</li></ul></div></article>
+<article class="card service-card"><img src="assets/Unsere1.png" alt="Laserentfernung von Rost an einem Metallbauteil" loading="lazy"><div class="content"><h3>Metall & Industrie</h3><p>Reinigung und Vorbereitung von Metalloberflächen vor Schweißen, Beschichten oder Weiterverarbeitung.</p><ul><li>Rost- und Oxidentfernung</li><li>Schweißnahtreinigung</li><li>Entlackung & Entschichtung</li></ul></div></article>
+<article class="card service-card"><img src="assets/Unsere2.png" alt="Laserreinigung eines Fahrzeugteils" loading="lazy"><div class="content"><h3>KFZ, Young- & Oldtimer</h3><p>Substanzerhaltende Sanierung von Fahrzeugteilen und Unterböden mit hoher Kontrolle.</p><ul><li>Unterboden & Achsteile</li><li>Lack-, Rost- und Schutzschichten</li><li>Vorbereitung für Schutzaufbau</li></ul></div></article>
+<article class="card service-card"><img src="assets/Unsere3.png" alt="Vorher-Nachher Reinigung verschiedener Steinoberflächen" loading="lazy"><div class="content"><h3>Fassaden & Bauwerke</h3><p>Gezielte Reinigung belasteter Flächen, Steine und Bauteile mit minimalem Materialabtrag.</p><ul><li>Graffiti & Ruß</li><li>Moos und Ablagerungen</li><li>Historische und sensible Flächen</li></ul></div></article>
 </div></div></section>
 <section id="vorteile" class="dark-band"><div class="container"><div class="section-head"><div><span class="eyebrow">Warum Laserreinigung?</span><h2>Sauberer Prozess. Kontrollierbares Ergebnis.</h2></div><p>Die Laserreinigung kann dort überzeugen, wo klassische Verfahren zu abrasiv, logistisch aufwendig oder schwer dosierbar sind.</p></div><div class="grid-3"><div class="card"><div class="icon">01</div><h3>Präzise steuerbar</h3><p>Leistung und Bearbeitung werden auf Material, Schicht und gewünschtes Ergebnis abgestimmt.</p></div><div class="card"><div class="icon">02</div><h3>Weniger Nebenmaterial</h3><p>Ohne Sand, Trockeneis oder zusätzliche Strahlmittel reduziert sich der Reinigungs- und Entsorgungsaufwand.</p></div><div class="card"><div class="icon">03</div><h3>Mobil und flexibel</h3><p>Viele Projekte können direkt bei Ihnen bearbeitet werden – ohne Demontage oder aufwendigen Transport.</p></div><div class="card"><div class="icon">04</div><h3>Für sensible Geometrien</h3><p>Kanten, Schweißnähte und schwer erreichbare Bereiche lassen sich gezielt bearbeiten.</p></div><div class="card"><div class="icon">05</div><h3>Saubere Vorbereitung</h3><p>Geeignet als Prozessschritt vor Beschichtung, Kleben, Schweißen oder Versiegelung.</p></div><div class="card"><div class="icon">06</div><h3>Zwei Lasersysteme</h3><p>Pulslaser für feine Detailarbeit und CW-Laser für leistungsstarke Flächenbearbeitung.</p></div></div></div></section>
 <section id="ablauf"><div class="container"><div class="section-head"><div><span class="eyebrow">So funktioniert es</span><h2>Von der Anfrage zum sauberen Ergebnis</h2></div><p>Eine gute Einschätzung beginnt mit Bildern, Materialinformationen und dem gewünschten Zielzustand.</p></div><div class="process"><div class="step"><span>01</span><h3>Anfrage senden</h3><p>Fotos, Maße, Material und Standort übermitteln.</p></div><div class="step"><span>02</span><h3>Projekt prüfen</h3><p>Wir bewerten Machbarkeit, System und Aufwand.</p></div><div class="step"><span>03</span><h3>Termin abstimmen</h3><p>Vor Ort oder in unserer Werkstatt in Walzbachtal.</p></div><div class="step"><span>04</span><h3>Reinigung ausführen</h3><p>Kontrolliert, sauber und auf das Ziel abgestimmt.</p></div></div></div></section>
 <section id="ueber-uns" class="about-showcase">
   <div class="container about-layout">
     <div class="about-visual">
-      <img class="about-main-image" src="assets/hero-metal.png" alt="Professionelle Laserreinigung einer Metalloberfläche" loading="lazy">
+      <img class="about-main-image" src="assets/metalmetal.png" alt="Professionelle Laserreinigung einer Metalloberfläche" loading="lazy">
       <div class="about-laser-glow" aria-hidden="true"></div>
       <div class="about-kicker">Präzision trifft Handwerk</div>
-      <div class="about-before-after" role="slider" tabindex="0" aria-label="Vorher-Nachher-Vergleich" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+      <div class="about-before-after" aria-label="Vorher-Nachher-Vergleich einer gereinigten Oberfläche">
         <div class="compare-half before">
           <img src="assets/buildingvor.png" alt="Verschmutzte Oberfläche vor der Laserreinigung" loading="lazy">
           <span class="compare-label">Vorher</span>
@@ -143,8 +138,7 @@
           <img src="assets/buildinga.png" alt="Gereinigte Oberfläche nach der Laserreinigung" loading="lazy">
           <span class="compare-label">Nachher</span>
         </div>
-        <span class="compare-divider" aria-hidden="true"></span>
-        <span class="compare-handle" aria-hidden="true">↔</span>
+        <span class="compare-handle" aria-hidden="true">‹›</span>
       </div>
     </div>
 
@@ -177,44 +171,6 @@ const toggle=document.querySelector('.mobile-toggle'),links=document.querySelect
 toggle.addEventListener('click',()=>{links.classList.toggle('open');toggle.setAttribute('aria-expanded',links.classList.contains('open'));});
 document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
 document.getElementById('year').textContent=new Date().getFullYear();
-
-const comparison=document.querySelector('.about-before-after');
-if(comparison){
-  const setComparisonPosition=(clientX)=>{
-    const rect=comparison.getBoundingClientRect();
-    const percent=Math.min(100,Math.max(0,((clientX-rect.left)/rect.width)*100));
-    comparison.style.setProperty('--compare-position',`${percent}%`);
-    comparison.setAttribute('aria-valuenow',String(Math.round(percent)));
-  };
-
-  comparison.addEventListener('pointerdown',e=>{
-    comparison.setPointerCapture(e.pointerId);
-    comparison.classList.add('is-dragging');
-    setComparisonPosition(e.clientX);
-  });
-  comparison.addEventListener('pointermove',e=>{
-    if(comparison.hasPointerCapture(e.pointerId)) setComparisonPosition(e.clientX);
-  });
-  const stopDragging=e=>{
-    if(comparison.hasPointerCapture(e.pointerId)) comparison.releasePointerCapture(e.pointerId);
-    comparison.classList.remove('is-dragging');
-  };
-  comparison.addEventListener('pointerup',stopDragging);
-  comparison.addEventListener('pointercancel',stopDragging);
-  comparison.addEventListener('keydown',e=>{
-    const currentValue=Number(comparison.getAttribute('aria-valuenow'))||50;
-    let nextValue=currentValue;
-    if(e.key==='ArrowLeft') nextValue=currentValue-5;
-    else if(e.key==='ArrowRight') nextValue=currentValue+5;
-    else if(e.key==='Home') nextValue=0;
-    else if(e.key==='End') nextValue=100;
-    else return;
-    e.preventDefault();
-    nextValue=Math.min(100,Math.max(0,nextValue));
-    comparison.style.setProperty('--compare-position',`${nextValue}%`);
-    comparison.setAttribute('aria-valuenow',String(nextValue));
-  });
-}
 
 const slider=document.querySelector('.hero-slider');
 const slides=[...document.querySelectorAll('.hero-slide')];
