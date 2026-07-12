@@ -35,14 +35,19 @@
     .about-laser-glow{position:absolute;z-index:2;left:8%;top:9%;width:270px;height:270px;border-radius:50%;background:radial-gradient(circle,rgba(255,102,50,.26),rgba(237,28,36,.1) 34%,transparent 69%);filter:blur(6px);pointer-events:none}
     .about-kicker{position:absolute;z-index:3;top:24px;left:24px;display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:999px;background:rgba(5,7,9,.72);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(12px);font-size:.73rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#fff}
     .about-kicker:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--brand2);box-shadow:0 0 16px var(--brand2)}
-    .about-before-after{position:absolute;z-index:4;left:28px;bottom:28px;width:min(70%,470px);height:245px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,.38);background:#090b0d;box-shadow:0 18px 45px rgba(0,0,0,.52)}
-    .about-before-after .compare-half{position:relative;overflow:hidden}
-    .about-before-after .compare-half+ .compare-half{border-left:1px solid rgba(255,255,255,.32)}
-    .about-before-after img{width:100%;height:100%;object-fit:cover}
+    .about-before-after{--compare-position:50%;position:absolute;z-index:4;left:28px;bottom:28px;width:min(70%,470px);height:245px;overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,.38);background:#090b0d;box-shadow:0 18px 45px rgba(0,0,0,.52);cursor:ew-resize;touch-action:none;user-select:none}
+    .about-before-after .compare-half{position:absolute;inset:0;overflow:hidden}
+    .about-before-after .compare-half.after{clip-path:inset(0 0 0 var(--compare-position))}
+    .about-before-after img{width:100%;height:100%;object-fit:cover;pointer-events:none}
     .about-before-after .before img{filter:grayscale(.45) sepia(.35) brightness(.53) contrast(1.2)}
     .about-before-after .after img{filter:grayscale(.18) brightness(1.06) contrast(1.02)}
-    .about-before-after .compare-label{position:absolute;left:0;right:0;bottom:0;padding:22px 10px 12px;text-align:center;font-size:.72rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.9))}
-    .about-before-after .compare-handle{position:absolute;z-index:5;left:50%;top:50%;transform:translate(-50%,-50%);width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#07090b;border:1px solid rgba(255,255,255,.3);box-shadow:0 8px 22px rgba(0,0,0,.5);font-weight:900;color:#fff}
+    .about-before-after .compare-label{position:absolute;bottom:0;padding:22px 14px 12px;font-size:.72rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.9));pointer-events:none}
+    .about-before-after .before .compare-label{left:0;text-align:left}
+    .about-before-after .after .compare-label{right:0;text-align:right}
+    .about-before-after .compare-divider{position:absolute;z-index:5;left:var(--compare-position);top:0;bottom:0;width:2px;transform:translateX(-50%);background:#fff;box-shadow:0 0 14px rgba(0,0,0,.7);pointer-events:none}
+    .about-before-after .compare-handle{position:absolute;z-index:6;left:var(--compare-position);top:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:#07090b;border:2px solid #fff;box-shadow:0 8px 22px rgba(0,0,0,.5);font-weight:900;color:#fff;pointer-events:none;transition:transform .15s ease}
+    .about-before-after:hover .compare-handle,.about-before-after.is-dragging .compare-handle{transform:translate(-50%,-50%) scale(1.08)}
+    .about-before-after:focus-visible{outline:3px solid var(--brand2);outline-offset:4px}
     .about-copy{padding:12px 0}
     .about-copy .about-brand{display:inline-block;margin-bottom:16px;color:#ff5a4d;font-size:.8rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
     .about-copy h2{max-width:690px;margin-bottom:22px;font-size:clamp(2.25rem,4vw,4.15rem);line-height:.98;letter-spacing:-.045em}
@@ -129,7 +134,7 @@
       <img class="about-main-image" src="assets/hero-metal.png" alt="Professionelle Laserreinigung einer Metalloberfläche" loading="lazy">
       <div class="about-laser-glow" aria-hidden="true"></div>
       <div class="about-kicker">Präzision trifft Handwerk</div>
-      <div class="about-before-after" aria-label="Vorher-Nachher-Vergleich einer gereinigten Oberfläche">
+      <div class="about-before-after" role="slider" tabindex="0" aria-label="Vorher-Nachher-Vergleich" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
         <div class="compare-half before">
           <img src="assets/buildingvor.png" alt="Verschmutzte Oberfläche vor der Laserreinigung" loading="lazy">
           <span class="compare-label">Vorher</span>
@@ -138,7 +143,8 @@
           <img src="assets/buildinga.png" alt="Gereinigte Oberfläche nach der Laserreinigung" loading="lazy">
           <span class="compare-label">Nachher</span>
         </div>
-        <span class="compare-handle" aria-hidden="true">‹›</span>
+        <span class="compare-divider" aria-hidden="true"></span>
+        <span class="compare-handle" aria-hidden="true">↔</span>
       </div>
     </div>
 
@@ -171,6 +177,44 @@ const toggle=document.querySelector('.mobile-toggle'),links=document.querySelect
 toggle.addEventListener('click',()=>{links.classList.toggle('open');toggle.setAttribute('aria-expanded',links.classList.contains('open'));});
 document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
 document.getElementById('year').textContent=new Date().getFullYear();
+
+const comparison=document.querySelector('.about-before-after');
+if(comparison){
+  const setComparisonPosition=(clientX)=>{
+    const rect=comparison.getBoundingClientRect();
+    const percent=Math.min(100,Math.max(0,((clientX-rect.left)/rect.width)*100));
+    comparison.style.setProperty('--compare-position',`${percent}%`);
+    comparison.setAttribute('aria-valuenow',String(Math.round(percent)));
+  };
+
+  comparison.addEventListener('pointerdown',e=>{
+    comparison.setPointerCapture(e.pointerId);
+    comparison.classList.add('is-dragging');
+    setComparisonPosition(e.clientX);
+  });
+  comparison.addEventListener('pointermove',e=>{
+    if(comparison.hasPointerCapture(e.pointerId)) setComparisonPosition(e.clientX);
+  });
+  const stopDragging=e=>{
+    if(comparison.hasPointerCapture(e.pointerId)) comparison.releasePointerCapture(e.pointerId);
+    comparison.classList.remove('is-dragging');
+  };
+  comparison.addEventListener('pointerup',stopDragging);
+  comparison.addEventListener('pointercancel',stopDragging);
+  comparison.addEventListener('keydown',e=>{
+    const currentValue=Number(comparison.getAttribute('aria-valuenow'))||50;
+    let nextValue=currentValue;
+    if(e.key==='ArrowLeft') nextValue=currentValue-5;
+    else if(e.key==='ArrowRight') nextValue=currentValue+5;
+    else if(e.key==='Home') nextValue=0;
+    else if(e.key==='End') nextValue=100;
+    else return;
+    e.preventDefault();
+    nextValue=Math.min(100,Math.max(0,nextValue));
+    comparison.style.setProperty('--compare-position',`${nextValue}%`);
+    comparison.setAttribute('aria-valuenow',String(nextValue));
+  });
+}
 
 const slider=document.querySelector('.hero-slider');
 const slides=[...document.querySelectorAll('.hero-slide')];
