@@ -58,6 +58,22 @@
     @media(max-width:1050px){.about-layout{grid-template-columns:1fr;gap:45px}.about-visual{min-height:640px}.about-copy{max-width:800px}.about-copy h2{max-width:760px}}
     @media(max-width:620px){.about-showcase{padding:74px 0 78px}.about-layout{gap:34px}.about-visual{min-height:500px;border-radius:18px}.about-kicker{top:16px;left:16px;font-size:.64rem}.about-before-after{left:14px;right:14px;bottom:14px;width:auto;height:190px}.about-copy h2{font-size:clamp(2rem,10vw,3rem)}.about-copy .quote{font-size:1.35rem}.about-info-grid{grid-template-columns:1fr}.about-info-card{min-height:100px;padding:17px}}
 
+
+    /* Interactive before/after slider */
+    .about-before-after.is-interactive{display:block;cursor:ew-resize;touch-action:pan-y;user-select:none}
+    .about-before-after.is-interactive .compare-layer{position:absolute;inset:0;overflow:hidden}
+    .about-before-after.is-interactive .compare-layer img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .about-before-after.is-interactive .compare-before img{filter:grayscale(.45) sepia(.35) brightness(.53) contrast(1.2)}
+    .about-before-after.is-interactive .compare-after{clip-path:inset(0 0 0 var(--compare-position));will-change:clip-path}
+    .about-before-after.is-interactive .compare-after img{filter:grayscale(.18) brightness(1.06) contrast(1.02)}
+    .about-before-after.is-interactive .compare-label{position:absolute;bottom:0;width:auto;padding:22px 14px 12px;font-size:.72rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.9));z-index:3}
+    .about-before-after.is-interactive .compare-label-before{left:0;text-align:left}
+    .about-before-after.is-interactive .compare-label-after{right:0;left:auto;text-align:right}
+    .about-before-after.is-interactive .compare-divider{position:absolute;z-index:5;top:0;bottom:0;left:var(--compare-position);width:2px;transform:translateX(-50%);background:rgba(255,255,255,.9);box-shadow:0 0 14px rgba(0,0,0,.55);pointer-events:none}
+    .about-before-after.is-interactive .compare-handle{left:var(--compare-position);pointer-events:none;transition:transform .15s ease,background .15s ease}
+    .about-before-after.is-interactive:hover .compare-handle,.about-before-after.is-interactive:focus-within .compare-handle{transform:translate(-50%,-50%) scale(1.08);background:var(--brand)}
+    .about-before-after.is-interactive .compare-range{position:absolute;z-index:8;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize}
+
   </style>
 </head>
 <body>
@@ -129,16 +145,18 @@
       <img class="about-main-image" src="assets/metalmetal.png" alt="Professionelle Laserreinigung einer Metalloberfläche" loading="lazy">
       <div class="about-laser-glow" aria-hidden="true"></div>
       <div class="about-kicker">Präzision trifft Handwerk</div>
-      <div class="about-before-after" aria-label="Vorher-Nachher-Vergleich einer gereinigten Oberfläche">
-        <div class="compare-half before">
+      <div class="about-before-after is-interactive" aria-label="Interaktiver Vorher-Nachher-Vergleich einer gereinigten Oberfläche" style="--compare-position:50%">
+        <div class="compare-layer compare-before">
           <img src="assets/buildingvor.png" alt="Verschmutzte Oberfläche vor der Laserreinigung" loading="lazy">
-          <span class="compare-label">Vorher</span>
+          <span class="compare-label compare-label-before">Vorher</span>
         </div>
-        <div class="compare-half after">
+        <div class="compare-layer compare-after">
           <img src="assets/buildinga.png" alt="Gereinigte Oberfläche nach der Laserreinigung" loading="lazy">
-          <span class="compare-label">Nachher</span>
+          <span class="compare-label compare-label-after">Nachher</span>
         </div>
+        <span class="compare-divider" aria-hidden="true"></span>
         <span class="compare-handle" aria-hidden="true">‹›</span>
+        <input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Vorher-Nachher-Regler bewegen">
       </div>
     </div>
 
@@ -248,6 +266,16 @@ document.addEventListener('visibilitychange',()=>{
     if(progressAnimation) progressAnimation.play();
     scheduleNext(remaining || SLIDE_TIME);
   }
+});
+
+
+const compareSliders=document.querySelectorAll('.about-before-after.is-interactive');
+compareSliders.forEach(compare=>{
+  const range=compare.querySelector('.compare-range');
+  const update=value=>compare.style.setProperty('--compare-position',`${value}%`);
+  range.addEventListener('input',()=>update(range.value));
+  range.addEventListener('change',()=>update(range.value));
+  update(range.value);
 });
 
 showSlide(0);
