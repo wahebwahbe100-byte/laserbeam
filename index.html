@@ -150,6 +150,22 @@
 /* Final safeguard: no blur or glow during scroll reveal */
 .scroll-reveal,.scroll-reveal.is-visible{filter:none!important;text-shadow:none!important;box-shadow:none!important}
 .scroll-reveal::before,.scroll-reveal::after{filter:none!important;box-shadow:none!important}
+
+    /* Mobile feature strip refinement */
+    @media(max-width:620px){
+      .strip{padding:14px 0;background:#0b0d0f;border-color:#252a30}
+      .strip-grid{display:grid;grid-template-columns:1fr;gap:10px}
+      .stat{position:relative;min-height:92px;padding:18px 18px 17px 22px!important;border:1px solid #292f36!important;border-radius:12px;background:linear-gradient(145deg,#14171b,#0f1114);overflow:hidden}
+      .stat:before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:0 4px 4px 0;background:var(--brand)}
+      .stat strong{display:block;margin:0 0 5px;font-size:1.02rem;line-height:1.25;letter-spacing:-.015em;color:#fff}
+      .stat small{display:block;font-size:.84rem;line-height:1.5;color:#bdc3cb;max-width:30rem}
+      .stat:last-child{border:1px solid #292f36!important}
+    }
+    @media(max-width:390px){
+      .stat{min-height:88px;padding:16px 15px 15px 19px!important}
+      .stat strong{font-size:.96rem}
+      .stat small{font-size:.79rem;line-height:1.45}
+    }
 </style>
 </head>
 <body>
