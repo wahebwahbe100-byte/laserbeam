@@ -76,13 +76,13 @@
 
     /* Scroll reveal inspired by the reference site: soft, clean and staggered */
     body{overflow-x:hidden}
-    .scroll-reveal{opacity:0;transform:translate3d(0,52px,0) scale(.985);filter:blur(7px);transition:opacity .82s cubic-bezier(.22,1,.36,1),transform .82s cubic-bezier(.22,1,.36,1),filter .82s cubic-bezier(.22,1,.36,1);transition-delay:var(--reveal-delay,0ms);will-change:opacity,transform,filter}
-    .scroll-reveal.reveal-left{transform:translate3d(-46px,18px,0) scale(.985)}
-    .scroll-reveal.reveal-right{transform:translate3d(46px,18px,0) scale(.985)}
-    .scroll-reveal.is-visible{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}
+    .scroll-reveal{opacity:0;transform:translate3d(0,42px,0);transition:opacity .72s cubic-bezier(.22,1,.36,1),transform .72s cubic-bezier(.22,1,.36,1);transition-delay:var(--reveal-delay,0ms);will-change:opacity,transform}
+    .scroll-reveal.reveal-left{transform:translate3d(-38px,14px,0)}
+    .scroll-reveal.reveal-right{transform:translate3d(38px,14px,0)}
+    .scroll-reveal.is-visible{opacity:1;transform:translate3d(0,0,0)}
     .card,.step,.stat,.about-info-card{transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease,background .3s ease}
     .card:hover,.step:hover,.stat:hover{transform:translateY(-5px)}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.scroll-reveal{opacity:1;transform:none!important;filter:none;transition:none}.card,.step,.stat,.about-info-card{transition:none}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.scroll-reveal{opacity:1;transform:none!important;transition:none}.card,.step,.stat,.about-info-card{transition:none}}
 
     /* Services footer bar */
     .services-footer{position:relative;background:linear-gradient(180deg,#0e1012,#090a0c);border-top:1px solid #2b3036;padding:54px 0 28px;overflow:hidden}
@@ -111,7 +111,7 @@
     .hero-slide .hero-actions{
       opacity:0;
       transform:translate3d(0,42px,0);
-      filter:blur(6px);
+      filter:none;
       transition:none;
     }
     body.hero-ready .hero-slide.is-active .eyebrow{animation:heroTextIn .72s cubic-bezier(.22,1,.36,1) .12s both}
@@ -119,9 +119,9 @@
     body.hero-ready .hero-slide.is-active .lead{animation:heroTextIn .78s cubic-bezier(.22,1,.36,1) .42s both}
     body.hero-ready .hero-slide.is-active .hero-actions{animation:heroTextIn .72s cubic-bezier(.22,1,.36,1) .56s both}
     @keyframes heroTextIn{
-      0%{opacity:0;transform:translate3d(0,42px,0);filter:blur(6px)}
-      55%{opacity:1;filter:blur(0)}
-      100%{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}
+      0%{opacity:0;transform:translate3d(0,42px,0)}
+      55%{opacity:1}
+      100%{opacity:1;transform:translate3d(0,0,0)}
     }
     @media(prefers-reduced-motion:reduce){
       .hero-slide .eyebrow,.hero-slide h1,.hero-slide .lead,.hero-slide .hero-actions{opacity:1;transform:none;filter:none}
@@ -143,6 +143,12 @@
 .about-kicker::before{box-shadow:none!important}
 .about-before-after.is-interactive .compare-divider{box-shadow:none!important}
 .services-footer::before{display:none!important;background:none!important}
+</style>
+
+<style id="scroll-no-glow-final">
+/* Final safeguard: no blur or glow during scroll reveal */
+.scroll-reveal,.scroll-reveal.is-visible{filter:none!important;text-shadow:none!important;box-shadow:none!important}
+.scroll-reveal::before,.scroll-reveal::after{filter:none!important;box-shadow:none!important}
 </style>
 </head>
 <body>
