@@ -364,6 +364,123 @@
   <meta name="twitter:description" content="Mobile Laserreinigung zur präzisen Entfernung von Rost, Lack, Ruß und Ablagerungen – materialschonend, ohne Strahlmittel und direkt bei Ihnen vor Ort.">
   <meta name="twitter:image" content="https://www.laserbeam.tech/assets/logo.png">
 
+
+
+<style id="mobile-horizontal-overflow-fix">
+/* Prevent horizontal page movement on phones. */
+html,
+body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden;
+}
+@supports (overflow:clip){
+  html,
+  body{overflow-x:clip}
+}
+body{position:relative}
+
+/* Grid/flex children may otherwise force the viewport wider than the device. */
+.container,
+.nav-wrap,
+nav,
+main,
+section,
+.hero-slider,
+.hero-slides,
+.hero-slide,
+.hero-content,
+.hero-controls,
+.strip,
+.strip-grid,
+.section-head,
+.grid-3,
+.process,
+.split,
+.contact-grid,
+.about-layout,
+.about-visual,
+.about-copy,
+.services-footer,
+.services-footer-grid,
+.footer-bottom,
+.footer-bottom-links{
+  min-width:0;
+  max-width:100%;
+}
+
+.hero-content > *,
+.section-head > *,
+.grid-3 > *,
+.process > *,
+.split > *,
+.contact-grid > *,
+.about-layout > *,
+.about-info-grid > *,
+.services-footer-grid > *,
+.footer-bottom > *{
+  min-width:0;
+}
+
+img,
+svg,
+video,
+canvas,
+iframe{max-width:100%}
+
+.contact-info,
+.footer-brand,
+.footer-contact-list,
+.about-copy,
+.card{
+  overflow-wrap:anywhere;
+  word-break:normal;
+}
+
+@media (max-width:620px){
+  /* Horizontal reveal transforms were creating extra scrollable width. */
+  .scroll-reveal.reveal-left,
+  .scroll-reveal.reveal-right{
+    transform:translate3d(0,36px,0);
+  }
+  .scroll-reveal.is-visible{
+    transform:translate3d(0,0,0);
+  }
+
+  .nav-links{
+    width:auto;
+    max-width:calc(100vw - 28px);
+  }
+
+  .hero-controls{
+    max-width:calc(100vw - 28px);
+  }
+
+  .hero-slide[data-slide="2"] .hero-content .eyebrow{
+    white-space:normal;
+    max-width:100%;
+  }
+
+  .footer-bottom{
+    width:100%;
+    flex-direction:column!important;
+    align-items:flex-start!important;
+  }
+  .footer-bottom-links{
+    margin-left:0!important;
+    max-width:100%;
+  }
+
+  .cta .btn,
+  .footer-contact-list .btn,
+  .works-link-wrap .btn{
+    max-width:100%;
+    white-space:normal;
+    text-align:center;
+  }
+}
+</style>
+
 </head>
 <body>
 <header class="nav-wrap">
