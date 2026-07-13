@@ -320,16 +320,16 @@
   .about-visual{min-height:430px}
   .about-before-after{height:165px}
 }
-
-/* Impressum und Datenschutz auf Desktop, Tablet und Mobil sichtbar */
-.footer-bottom-links{display:flex!important;visibility:visible!important;opacity:1!important;gap:18px;flex-wrap:wrap}
-.footer-bottom-links a{display:inline-flex!important;color:#c8cdd4;transition:color .2s ease}
-.footer-bottom-links a:hover{color:#ff6957}
-@media(max-width:620px){
-  .footer-bottom-links{display:flex!important;width:100%;gap:16px}
-}
 </style>
 
+
+<style id="footer-desktop-visibility-fix">
+/* Keep the original footer design; ensure its legal links are always visible on every screen size. */
+.footer-bottom{opacity:1!important;visibility:visible!important;transform:none!important}
+.footer-bottom-links{display:flex!important;visibility:visible!important;opacity:1!important}
+.footer-bottom-links a{display:inline-flex!important;visibility:visible!important;opacity:1!important;color:#c9ced5!important;position:relative;z-index:2}
+.footer-bottom-links a:hover{color:#ff6957!important}
+</style>
 </head>
 <body>
 <header class="nav-wrap">
@@ -595,7 +595,7 @@ const revealGroups=[
   '.cta > *',
   '#kontakt .section-head > *',
   '#kontakt .contact-info, #kontakt .form',
-  '.services-footer-grid > *, .footer-bottom'
+  '.services-footer-grid > *'
 ];
 
 const revealTargets=[];
